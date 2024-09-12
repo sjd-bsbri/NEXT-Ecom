@@ -4,12 +4,13 @@ import { create } from "@/actions/contact";
 import { useFormState } from "react-dom";
 import SubmitButton from "../SubmitButton";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function FormContact() {
   const [state, formAction] = useFormState(create, {});
-  useEffect(()=>{
-    console.log(state);
-  },[state])
+  useEffect(() => {
+    toast(state?.message, { type: `${state?.status}` });
+  }, [state]);
   return (
     <div className="form_container">
       <form action={formAction}>

@@ -15,4 +15,18 @@ const getFetch = async (url) => {
   }
 };
 
-export { getFetch };
+const postFetch = async (url, body) => {
+  const res = await fetch(`http://127.0.0.1:8000/api${url}`, {
+    cache: "no-store",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  return await res.json();
+};
+
+export { getFetch, postFetch};

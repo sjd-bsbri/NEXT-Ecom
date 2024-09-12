@@ -1,8 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.rtl.min.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
-
-
-
+@import "react-toastify/dist/ReactToastify.css";
 
 @font-face {
   font-family: "Vazir";
@@ -11,7 +9,6 @@
     url(../public/fonts/Vazir.woff2) format("woff2"),
     url(../public/fonts/Vazir.woff) format("woff"),
     url(../public/fonts/Vazir.ttf) format("truetype");
-  /* Safari, Android, iOS */
 }
 
 body {
@@ -282,7 +279,7 @@ a:focus {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
-  text-decoration: none
+  text-decoration: none;
 }
 
 .btn-auth:hover {
@@ -1306,4 +1303,9 @@ a:focus {
     float: left;
     width: 50%;
   }
+}
+
+.Toastify__toast-body {
+  font-family: "Vazir", sans-serif !important;
+  direction: rtl;
 }
