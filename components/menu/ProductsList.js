@@ -8,8 +8,8 @@ export default async function ProductsList({params}) {
   return (
     <>
       <div className="row gx-3">
-        {data.products.map((product) => (
-          <div className="col-sm-6 col-lg-4">
+        {data.products.map((product,index) => (
+          <div key={index} className="col-sm-6 col-lg-4">
             <Product product={product} />
           </div>
         ))}

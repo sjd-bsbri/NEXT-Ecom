@@ -1,5 +1,6 @@
 import { getBlurDataURL, numberFormat } from "@/utils/helper";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Product({ product }) {
   return (
@@ -18,7 +19,9 @@ export default function Product({ product }) {
           />
         </div>
         <div className="detail-box">
-          <h5>{product.name} </h5>
+          <h5>
+            <Link href={`/products/${product.slug}`}>{product.name}</Link>
+          </h5>
           <p>{product.description}</p>
           <div className="options">
             <h6>
@@ -30,7 +33,7 @@ export default function Product({ product }) {
               ) : (
                 <span>{numberFormat(product.price)}</span>
               )}
-              0<span>تومان</span>
+              <span>تومان</span>
             </h6>
             <a href="">
               <i className="bi bi-cart-fill text-white fs-5"></i>
