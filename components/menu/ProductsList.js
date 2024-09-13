@@ -2,8 +2,8 @@ import { getFetch } from "@/utils/fetch";
 import Product from "../products/Product";
 import Paginate from "./Paginate";
 
-export default async function ProductsList() {
-  const data = await getFetch("/menu");
+export default async function ProductsList({params}) {
+  const data = await getFetch(`/menu?${params}`);
 
   return (
     <>
@@ -14,7 +14,7 @@ export default async function ProductsList() {
           </div>
         ))}
       </div>
-      <Paginate />
+      <Paginate  links={data.meta.links} />
     </>
   );
 }
