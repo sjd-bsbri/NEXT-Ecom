@@ -15,7 +15,7 @@ export default async function ProductPage({ params }) {
             <div className="col-md-10 offset-md-1">
               <div className="row gy-5">
                 <div className="col-sm-12 col-lg-6">
-                  <h3 className="fw-bold mb-4">{product.names}</h3>
+                  <h3 className="fw-bold mb-4">{product.name}</h3>
                   <h5 className="mb-3">
                     {product.is_sale ? (
                       <>
