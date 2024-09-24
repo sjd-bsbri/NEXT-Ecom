@@ -1,9 +1,10 @@
-const getFetch = async (url) => {
+const getFetch = async (url,headers={}) => {
   const res = await fetch(`http://127.0.0.1:8000/api${url}`, {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      ...headers
     },
   });
 
