@@ -1,4 +1,5 @@
 import CreateForm from "@/components/profile/addresses/CreateForm";
+import EditForm from "@/components/profile/addresses/EditForm";
 import { getFetch } from "@/utils/fetch";
 import { cookies } from "next/headers";
 
@@ -13,6 +14,11 @@ export default async function AddressesPage() {
     <>
       <CreateForm provinces={provinces} cities={cities} />
       <hr />
+      {
+        addresses.map(address=>(
+      <EditForm key={address.id} address={address} provinces={provinces} cities={cities} />
+    ))
+  }
       {/* <div className="card card-body">
         <div className="row g-4">
           <div className="col col-md-6">

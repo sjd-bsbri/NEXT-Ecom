@@ -4,15 +4,16 @@ import { useEffect ,useState} from "react";
 import { toast } from "react-toastify";
 import { useFormState } from "react-dom";
 import SubmitButton from "@/components/SubmitButton";
-import { createAddress } from "@/actions/profile";
+import { editAddress } from "@/actions/profile";
+import DeleteForm from "./DeleteForm";
 
-export default function CreateForm({provinces,cities}) {
+export default function EditForm({address,provinces,cities}) {
   const [citiesFilter , setCitiesFilter] = useState(cities)
 
-  const [stateCreate, formActionCreate] = useFormState(createAddress, {});
+  const [stateEdit, formActionEdit] = useFormState(editAddress, {});
   useEffect(() => {
-    toast(stateCreate?.message, { type: `${stateCreate?.status}` });
-  }, [stateCreate]);
+    toast(stateEdit?.message, { type: `${stateEdit?.status}` });
+  }, [stateEdit]);
 
 
   function changeProvince (e){
@@ -20,32 +21,26 @@ export default function CreateForm({provinces,cities}) {
   }
   return (
     <>
-      <button
-        className="btn btn-primary"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseExample"
-      >
-        ایجاد آدرس جدید
-      </button>
-      <form action={formActionCreate} className="collapse mt-3" id="collapseExample">
-        <div className="card card-body">
+      
+
+      <div  className="position-relative" >
+        <form action={formActionEdit} className="card card-body mt-3">
           <div className="row g-4">
             <div className="col col-md-6">
               <label className="form-label">عنوان</label>
-              <input name="title" type="text" className="form-control" />
+              <input name="title" defaultValue={address.title} type="text" className="form-control" />
             </div>
             <div className="col col-md-6">
               <label className="form-label">شماره تماس</label>
-              <input name="cellphone" type="text" className="form-control" />
+              <input name="cellphone" defaultValue={address.cellphone} type="text" className="form-control" />
             </div>
             <div className="col col-md-6">
               <label className="form-label">کد پستی</label>
-              <input name="postal_code" type="text" className="form-control" />
+              <input name="postal_code" defaultValue={address.postal_code} type="text" className="form-control" />
             </div>
             <div className="col col-md-6">
               <label className="form-label">استان</label>
-              <select name="province_id" className="form-select" onChange={changeProvince}>
+              <select name="province_id" defaultValue={address.province_id} className="form-select" onChange={changeProvince}>
                 {
                   provinces.map(province =>(
 
@@ -57,7 +52,7 @@ export default function CreateForm({provinces,cities}) {
             </div>
             <div className="col col-md-6">
               <label className="form-label">شهر</label>
-              <select name="city_id" className="form-select">
+              <select name="city_id" defaultValue={address.city_id} className="form-select">
                {
                 citiesFilter.map(city=>(
 
@@ -71,17 +66,21 @@ export default function CreateForm({provinces,cities}) {
               <label className="form-label">آدرس</label>
               <textarea
               name="address"
+              defaultValue={address.address}
                 type="text"
                 rows="5"
                 className="form-control"
               ></textarea>
             </div>
+            <input type="hidden" name="address_id" value={address.id}/>
           </div>
           <div>
-            <SubmitButton title="ایجاد"  style="btn btn-primary mt-4"/>
+            <SubmitButton title="ویرایش"  style="btn btn-primary mt-4"/>
           </div>
-        </div>
-      </form>
+        </form>
+       <DeleteForm  addressId={address.id} />
+      </div>
+       
     </>
   );
 }
