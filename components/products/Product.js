@@ -1,8 +1,19 @@
+"use client";
+
+import { addToCart, removeFromCart } from "@/redux/slices/cartSlice";
 import { getBlurDataURL, numberFormat } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function Product({ product }) {
+  const dispatch = useDispatch();
+  function handleAddToCart(product) {
+    dispatch(removeFromCart(product.id));
+    dispatch(addToCart({ product, qty: 1 }));
+    toast.success('محصول به سبد خرید اضافه شد')
+  }
   return (
     <div className="box">
       <div>
@@ -35,9 +46,9 @@ export default function Product({ product }) {
               )}
               <span>تومان</span>
             </h6>
-            <a href="">
+            <button onClick={() => handleAddToCart(product)}>
               <i className="bi bi-cart-fill text-white fs-5"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
